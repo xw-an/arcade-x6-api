@@ -27,11 +27,11 @@ arcade-mvc-config 模块是用于处理 HTTP 请求的拦截器配置。它定�
 5. 构建项目：mvn clean install
 6. 运行项目：mvn spring-boot:run
 
-## 对应的前端项目
-- 项目仓库地址：https://github.com/xw-an/arcade-x6.git
-- 项目描述：该流程编排后端对应的前端项目
-
 ## 联系我
 如果您有任何疑问或建议，请通过以下方式联系我：
 - 邮箱：xw-an@163.com<br>
 我将尽快回复您的消息，并感谢您对项目的关注和支持！
+
+## 相关的前端项目
+- 项目仓库地址：https://github.com/xw-an/arcade-x6.git
+- 项目描述：该流程编排后端对应的前端项目
