@@ -1,5 +1,6 @@
 # Arcade-X6 API
-  Arcade-X6 API 是一个基于 Spring Boot 的后端服务项目，该项目主要包含四个模块：arcade-analysis、arcade-api、arcade-common 和 arcade-mvc-config。
+  Arcade-X6 API 是一个基于 Spring Boot 的后端服务项目，该项目主要用于业务场景的流程编排。  
+  项目主要包含四个模块：arcade-analysis、arcade-api、arcade-common 和 arcade-mvc-config。
 
 ## 模块介绍
 ### arcade-analysis
@@ -7,6 +8,9 @@ arcade-analysis 模块主要负责处理与组件相关的逻辑。它包含了�
 
 ### arcade-api
 arcade-api 模块提供了对外的 HTTP 接口，用于与客户端应用程序进行交互。它实现了各种 RESTful API，提供了组件管理、流程编排和任务管理等功能。客户端应用程序可以通过调用这些接口来实现与流程编排平台的交互。
+- 业务组件模块
+- 流程编排模块
+- 任务管理模块
 
 ### arcade-common
 arcade-common 模块是一个公共模块，包含了项目中共享的工具类、常量、配置文件等。它提供了一些通用的功能和组件，可以被其他模块引用和复用。
