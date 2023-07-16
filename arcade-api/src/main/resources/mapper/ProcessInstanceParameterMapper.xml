@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.ProcessInstanceParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.ProcessInstanceParameter" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="version_id" property="versionId" jdbcType="BIGINT" />
+    <result column="process_instance_id" property="processInstanceId" jdbcType="BIGINT" />
+    <result column="process_node_id" property="processNodeId" jdbcType="BIGINT" />
+    <result column="process_link_id" property="processLinkId" jdbcType="BIGINT" />
+    <result column="parameter_type" property="parameterType" jdbcType="VARCHAR" />
+    <result column="parameter_name" property="parameterName" jdbcType="VARCHAR" />
+    <result column="parameter_value" property="parameterValue" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version_id, process_instance_id, process_node_id, process_link_id, parameter_type, parameter_name,
+    parameter_value, is_delete,created_by, created_time, updated_by, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_instance_parameter
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from process_instance_parameter
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.ProcessInstanceParameter" >
+    insert into process_instance_parameter (id, version_id,process_instance_id, process_node_id,
+      process_link_id, parameter_type, parameter_name, 
+      parameter_value, created_by, created_time, 
+      updated_by, updated_time)
+    values (#{id,jdbcType=BIGINT}, #{versionId,jdbcType=BIGINT},#{processInstanceId,jdbcType=BIGINT}, #{processNodeId,jdbcType=BIGINT},
+      #{processLinkId,jdbcType=BIGINT}, #{parameterType,jdbcType=VARCHAR}, #{parameterName,jdbcType=VARCHAR}, 
+      #{parameterValue,jdbcType=VARCHAR},  #{isDelete,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.ProcessInstanceParameter" useGeneratedKeys="true" keyProperty="id">
+    insert into process_instance_parameter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionId!= null" >
+        version_id,
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id,
+      </if>
+      <if test="processNodeId != null" >
+        process_node_id,
+      </if>
+      <if test="processLinkId != null" >
+        process_link_id,
+      </if>
+      <if test="parameterType != null" >
+        parameter_type,
+      </if>
+      <if test="parameterName != null" >
+        parameter_name,
+      </if>
+      <if test="parameterValue != null" >
+        parameter_value,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="processNodeId != null" >
+        #{processNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="processLinkId != null" >
+        #{processLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="parameterType != null" >
+        #{parameterType,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.ProcessInstanceParameter" >
+    update process_instance_parameter
+    <set>
+      <if test="versionId != null" >
+        version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="processNodeId != null" >
+        process_node_id = #{processNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="processLinkId != null" >
+        process_link_id = #{processLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="parameterType != null" >
+        parameter_type = #{parameterType,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        parameter_name = #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        parameter_value = #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.ProcessInstanceParameter" >
+    update process_instance_parameter
+    set version_id = #{versionId,jdbcType=BIGINT},
+      process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      process_node_id = #{processNodeId,jdbcType=BIGINT},
+      process_link_id = #{processLinkId,jdbcType=BIGINT},
+      parameter_type = #{parameterType,jdbcType=VARCHAR},
+      parameter_name = #{parameterName,jdbcType=VARCHAR},
+      parameter_value = #{parameterValue,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessInstanceParameter" >
+    select
+    <include refid="Base_Column_List" />
+    from process_instance_parameter
+    <where>
+        <if test="id != null" >
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="versionId != null" >
+            and version_id = #{versionId,jdbcType=BIGINT}
+        </if>
+        <if test="processInstanceId != null" >
+            and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+        </if>
+        <if test="processNodeId != null" >
+            and process_node_id = #{processNodeId,jdbcType=BIGINT}
+        </if>
+        <if test="processLinkId != null" >
+            and process_link_id = #{processLinkId,jdbcType=BIGINT}
+        </if>
+        <if test="parameterType != null" >
+            and parameter_type = #{parameterType,jdbcType=VARCHAR}
+        </if>
+        <if test="parameterName != null" >
+            and parameter_name = #{parameterName,jdbcType=VARCHAR}
+        </if>
+        <if test="parameterValue != null" >
+            and parameter_value = #{parameterValue,jdbcType=VARCHAR}
+        </if>
+        <if test="isDelete != null" >
+            and is_delete = #{isDelete,jdbcType=INTEGER}
+        </if>
+        <if test="createdBy != null" >
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="createdTime != null" >
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updatedBy != null" >
+            and updated_by = #{updatedBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null" >
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+    </where>
+  </select>
+  <update id="deleteByProcessNodeId" parameterType="com.x6.arcade.entity.ProcessInstanceParameter">
+    update process_instance_parameter
+    set is_delete = 1,
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_node_id = #{processNodeId,jdbcType=BIGINT}
+    and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    and version_id = #{versionId,jdbcType=BIGINT}
+  </update>
+  <update id="deleteByProcessLinkId">
+    update process_instance_parameter
+    set is_delete = 1,
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_link_id = #{processLinkId,jdbcType=BIGINT}
+    and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    and version_id = #{versionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByParameterType" parameterType="com.x6.arcade.entity.ProcessInstanceParameter">
+    update process_instance_parameter
+    <set>
+      <if test="versionId != null" >
+        version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="processNodeId != null" >
+        process_node_id = #{processNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="processLinkId != null" >
+        process_link_id = #{processLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="parameterType != null" >
+        parameter_type = #{parameterType,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        parameter_name = #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        parameter_value = #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+   <where>
+      <if test="versionId != null" >
+          version_id = #{versionId,jdbcType=BIGINT}
+      </if>
+      <if test="processInstanceId != null" >
+          and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+      </if>
+      <if test="processNodeId != null" >
+          and process_node_id = #{processNodeId,jdbcType=BIGINT}
+      </if>
+      <if test="processLinkId != null" >
+          and process_link_id = #{processLinkId,jdbcType=BIGINT}
+      </if>
+      <if test="parameterType != null" >
+          and parameter_type = #{parameterType,jdbcType=VARCHAR}
+      </if>
+      <if test="parameterName != null" >
+          and parameter_name = #{parameterName,jdbcType=VARCHAR}
+      </if>
+   </where>
+  </update>
+</mapper>

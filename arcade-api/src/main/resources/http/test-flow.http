@@ -1,0 +1,249 @@
+### 查询流程工具列表
+POST http://127.0.0.1:8001/arcade-x6-api/flows/list
+Content-Type: application/json
+
+{
+  "businessLine": "业务线1",
+  "name": "",
+  "status": 1,
+  "pageSize": 10,
+  "currentPage": 1
+}
+
+### 查询热门工具
+GET http://127.0.0.1:8001/arcade-x6-api/flows/hot?category=积分商城
+Content-Type: application/json
+
+### 新建流程工具
+POST http://127.0.0.1:8001/arcade-x6-api/flows/createInstance
+Content-Type: application/json
+
+{
+  "name": "测试流程09",
+  "description": "这是一个测试的流程编排工具08",
+  "businessLine": "业务线1",
+  "type": "autotest",
+  "version": 1,
+  "status": 0,
+  "createdBy": "amy.xue",
+  "updatedBy": "amy.xue"
+}
+
+### 编辑流程工具
+POST http://127.0.0.1:8001/arcade-x6-api/flows/editInstance
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "造数工具-01",
+  "description": "这是一个测试的流程编排工具-01",
+  "businessLine": "业务线1",
+  "type": "tool",
+  "version": 1,
+  "status": 0,
+  "createdBy": "amy.xue",
+  "updatedBy": "amy1.xue1"
+}
+
+### 创建节点
+POST http://127.0.0.1:8001/arcade-x6-api/flows/createNode
+Content-Type: application/json
+
+{
+  "processNode": {
+    "processInstanceId": 1,
+    "uuid": "7c417a28-9b38-4982-9e65-dd40bf715067",
+    "name": "开始节点",
+    "type": "start",
+    "position": "[100,99]",
+    "createdBy": "amy.xue",
+    "updatedBy": "amy.xue"
+  },
+  "processInstanceParameter": [
+    {
+      "parameterType": "样式信息",
+      "parameterName": "style",
+      "parameterValue": "{\"color\": \"#fff\", \"background\": \"#1890ff\"}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    },
+    {
+      "parameterType": "参数信息",
+      "parameterName": "param",
+      "parameterValue": "{}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    }
+  ]
+}
+
+### 创建节点
+POST http://127.0.0.1:8001/arcade-x6-api/flows/createNode
+Content-Type: application/json
+
+{
+  "processNode": {
+    "processInstanceId": 1,
+    "uuid": "7c417a28-9b38-4982-9e65-dd40bf715067",
+    "name": "开始节点",
+    "type": "start",
+    "position": "[100,99]",
+    "createdBy": "amy.xue",
+    "updatedBy": "amy.xue"
+  },
+  "processInstanceParameter": [
+    {
+      "parameterType": "样式信息",
+      "parameterName": "style",
+      "parameterValue": "{\"color\": \"#fff\", \"background\": \"#1890ff\"}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    },
+    {
+      "parameterType": "参数信息",
+      "parameterName": "param",
+      "parameterValue": "{}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    }
+  ]
+}
+
+### 删除节点
+POST http://127.0.0.1:8001/arcade-x6-api/flows/deleteNode
+Content-Type: application/json
+
+{
+  "processInstanceId": 2,
+  "uuid": "7c417a28-9b38-4982-9e65-dd40bf715067",
+  "updatedBy": "amy.xue"
+}
+
+### 更新节点参数
+POST http://127.0.0.1:8001/arcade-x6-api/flows/updateNode
+Content-Type: application/json
+
+{
+  "processNode": {
+    "processInstanceId": 2,
+    "uuid": "4bf646f1-b4a1-4188-af53-b9a90dd91f0d",
+    "name": "文本测试",
+    "position": "[100,99]",
+    "updatedBy": "amy.xue"
+  },
+  "processInstanceParameter": [
+    {
+      "parameterType": "样式信息",
+      "parameterName": "style",
+      "parameterValue": "{\"color\": \"#fff\", \"background\": \"#1890ff\"}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    },
+    {
+      "parameterType": "参数信息",
+      "parameterName": "param",
+      "parameterValue": "{}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    }
+  ]
+}
+
+###创建连线
+POST http://127.0.0.1:8001/arcade-x6-api/flows/createLink
+Content-Type: application/json
+
+{
+  "sourceNodeId": "4b476173-fc52-4f68-9835-4f473980decf",
+  "targetNodeId": "852b31e2-fe16-4513-8f95-78798214226a",
+  "processLink": {
+    "processInstanceId": 1,
+    "uuid": "7c417a28-9b38-4982-9e65-dd40bf715067",
+    "lineCondition": null,
+    "createdBy": "amy.xue",
+    "updatedBy": "amy.xue"
+  },
+  "processInstanceParameter": [
+    {
+      "parameterType": "样式信息",
+      "parameterName": "style",
+      "parameterValue": "{\"color\": \"#fff\", \"background\": \"#1890ff\"}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    },
+    {
+      "parameterType": "参数信息",
+      "parameterName": "param",
+      "parameterValue": "{}",
+      "createdBy": "amy.xue",
+      "updatedBy": "amy.xue"
+    }
+  ]
+}
+
+### 删除连线
+POST http://127.0.0.1:8001/arcade-x6-api/flows/deleteLink
+Content-Type: application/json
+
+{
+  "processInstanceId": 2,
+  "uuid": "c1f4d0e9-cfdc-45ec-bcd6-2982646267bd",
+  "updatedBy": "amy.xue"
+}
+
+### 更新连线参数
+POST http://127.0.0.1:8001/arcade-x6-api/flows/updateLink
+Content-Type: application/json
+
+{
+  "sourceNodeId": "9e5830aa-fd95-4171-9038-28be2acf7c04",
+  "targetNodeId": "8d6a24e6-189c-4e55-9b23-4bf5d70de55a",
+  "processLink": {
+    "processInstanceId": 2,
+    "uuid": "7c417a28-9b38-4982-9e65-dd40bf715067",
+    "lineCondition": null,
+    "updatedBy": "amy.xue"
+  },
+  "processInstanceParameter": [
+        {
+          "parameterType": "样式信息",
+          "parameterName": "style",
+          "parameterValue": "{\"color\": \"#000\", \"background\": \"#1890ff\"}",
+          "updatedBy": "amy.xue"
+        },
+        {
+          "parameterType": "参数信息",
+          "parameterName": "param",
+          "parameterValue": "{}",
+          "updatedBy": "amy.xue"
+        }
+    ]
+}
+
+### 查询流程
+GET http://127.0.0.1:8001/arcade-x6-api/flows/detail/1
+Content-Type: application/json
+
+### 更新位置
+POST http://127.0.0.1:8001/arcade-x6-api/flows/updateNodeCoordinate
+Content-Type: application/json
+
+{
+  "uuid": "0a87d59b-1b36-43b0-b107-61487653b292",
+  "position": "100,99",
+  "updatedBy": "amy.xue"
+}
+
+### 查询节点参数信息
+POST http://127.0.0.1:8001/arcade-x6-api/flows/queryParameter
+Content-Type: application/json
+
+{
+  "processInstanceId":"4",
+  "processNodeUuid":"ef0fbebf-c4a4-42c5-8aaa-34e3f12e1923",
+  "parameterType":"参数信息"
+}
+
+### 查询流程实例的所有节点
+GET http://127.0.0.1:8001/arcade-x6-api/flows/queryNodes/3
+Content-Type: application/json

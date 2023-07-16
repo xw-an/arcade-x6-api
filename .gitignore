@@ -1,0 +1,14 @@
+# Ignore build output directories
+target/
+out/
+
+# Ignore IDE-specific files and folders
+.idea/
+.vscode/
+
+# Ignore project file
+*.iml
+
+# Ignore system files
+.DS_Store
+Thumbs.db

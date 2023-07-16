@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <classPathEntry location="/Users/xuewei/Documents/maven/repository/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar"/>
+    <!-- 一个数据库一个context -->
+    <context id="MYTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--suppressDate:**阻止**生成的注释包含时间戳-->
+            <property name="suppressDate" value="true"/>
+            <!--suppressAllComments:**阻止**生成注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/qa_arcade"
+                        userId="root" password="root123456">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <!--控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的 java.math.BigDecimal-->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置(也就是我们所说的pojo)-->
+        <javaModelGenerator targetPackage="com.x6.arcade.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.x6.arcade.dao"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="process_instance_version" domainObjectName="ProcessInstanceVersion"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+<!--            <columnOverride column="process_parameter" jdbcType="VARCHAR"/>-->
+<!--            <columnOverride column="process_result" jdbcType="VARCHAR"/>-->
+        </table>
+    </context>
+</generatorConfiguration>

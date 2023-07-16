@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.ProcessInstanceMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.ProcessInstance" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, description, business_line, type, times, status, created_by, created_time,
+    updated_by, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_instance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from process_instance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.ProcessInstance" >
+    insert into process_instance (id, name, description,
+      business_line, type,
+      times, status, created_by, 
+      created_time, updated_by, updated_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{businessLine,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+      #{times,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.ProcessInstance" useGeneratedKeys="true" keyProperty="id">
+    insert into process_instance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.ProcessInstance" >
+    update process_instance
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.ProcessInstance" >
+    update process_instance
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessInstance">
+    select
+    <include refid="Base_Column_List" />
+    from process_instance
+    <where>
+        <if test="id != null" >
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="name != null and name != ''" >
+            and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="description != null" >
+            and description = #{description,jdbcType=VARCHAR}
+        </if>
+        <if test="businessLine != null and businessLine != ''" >
+            and business_line = #{businessLine,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null" >
+            and type = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="times != null" >
+            and times = #{times,jdbcType=INTEGER}
+        </if>
+        <if test="status != null" >
+            and status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="createdBy != null" >
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="createdTime != null" >
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updatedBy != null" >
+            and updated_by = #{updatedBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null" >
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+    </where>
+  </select>
+  <select id="selectHotProcessInstances" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessInstance">
+    select
+    <include refid="Base_Column_List" />
+    from process_instance
+    <where>
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="description != null" >
+        and description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="businessLine != null" >
+        and business_line = #{businessLine,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="times != null" >
+        and times = #{times,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="createdBy != null" >
+        and created_by = #{createdBy,jdbcType=VARCHAR}
+      </if>
+      <if test="createdTime != null" >
+        and created_time = #{createdTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updatedBy != null" >
+        and updated_by = #{updatedBy,jdbcType=VARCHAR}
+      </if>
+      <if test="updatedTime != null" >
+        and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by times desc limit 5
+  </select>
+  <select id="selectIsExist" parameterType="com.x6.arcade.entity.ProcessInstance" resultType="int">
+    select count(1) from process_instance where name = #{name,jdbcType=VARCHAR}
+    and status in (0,1) and business_line = #{businessLine,jdbcType=VARCHAR} and type = #{type,jdbcType=VARCHAR}
+  </select>
+</mapper>

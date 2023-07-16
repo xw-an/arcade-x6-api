@@ -1,0 +1,49 @@
+### 执行流程工具
+POST http://127.0.0.1:8001/arcade-x6-api/task/execute
+Content-Type: application/json
+
+{
+  "processInstanceId": 1,
+  "author": "amy.xue",
+  "versionId": 3
+}
+
+### 查询流程执行日志
+GET http://127.0.0.1:8001/arcade-x6-api/task/queryLogs/1
+Content-Type: application/json
+
+### 根据taskId查询流程执行日志
+GET http://127.0.0.1:8001/arcade-x6-api/task/queryTaskLogs/56
+Content-Type: application/json
+
+### 查询流程中最后一次执行日志ID
+GET http://127.0.0.1:8001/arcade-x6-api/task/queryLastTaskId/1
+Content-Type: application/json
+
+### 查询流程实例下所有的变量名
+GET http://127.0.0.1:8001/arcade-x6-api/task/queryVariables/3
+Content-Type: application/json
+
+### 查询任务list
+POST http://127.0.0.1:8001/arcade-x6-api/task/queryTaskList
+Content-Type: application/json
+
+{
+  "taskId": 8,
+  "businessLine": "",
+  "processInstanceName": "",
+  "versionId": 3,
+  "status": 3,
+  "createdBy": "amy.xue"
+}
+
+### 查询任务list
+POST http://127.0.0.1:8001/arcade-x6-api/task/queryTaskList
+Content-Type: application/json
+
+{
+  "businessLine": "",
+  "processInstanceName": "",
+  "pageSize": 10,
+  "currentPage": 1
+}

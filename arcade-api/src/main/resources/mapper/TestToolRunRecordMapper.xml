@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.TestToolRunRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.TestToolRunRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="tool_id" property="toolId" jdbcType="BIGINT" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="request_param" property="requestParam" jdbcType="VARCHAR" />
+    <result column="response_param" property="responseParam" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tool_id, start_time, end_time, request_param, response_param, status, result, 
+    operator, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_tool_run_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from test_tool_run_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.TestToolRunRecord" >
+    insert into test_tool_run_record (id, tool_id, start_time, 
+      end_time, request_param, response_param, 
+      status, result, operator, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{toolId,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{requestParam,jdbcType=VARCHAR}, #{responseParam,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.TestToolRunRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into test_tool_run_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="toolId != null" >
+        tool_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="requestParam != null" >
+        request_param,
+      </if>
+      <if test="responseParam != null" >
+        response_param,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="toolId != null" >
+        #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestParam != null" >
+        #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="responseParam != null" >
+        #{responseParam,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.TestToolRunRecord" >
+    update test_tool_run_record
+    <set >
+      <if test="toolId != null" >
+        tool_id = #{toolId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestParam != null" >
+        request_param = #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="responseParam != null" >
+        response_param = #{responseParam,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.TestToolRunRecord" >
+    update test_tool_run_record
+    set tool_id = #{toolId,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      request_param = #{requestParam,jdbcType=VARCHAR},
+      response_param = #{responseParam,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      result = #{result,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByToolId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from test_tool_run_record
+    where tool_id = #{toolId,jdbcType=BIGINT}
+    order by id desc
+  </select>
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.ProcessInstanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.ProcessInstanceLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="version_id" property="versionId" jdbcType="BIGINT" />
+    <result column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="process_node_id" property="processNodeId" jdbcType="BIGINT" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="process_type" property="processType" jdbcType="VARCHAR" />
+    <result column="process_parameter" property="processParameter" jdbcType="VARCHAR" />
+    <result column="process_result" property="processResult" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="process_instance_id" property="processInstanceId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version_id, task_id, process_node_id, message, process_type, process_parameter, process_result,
+    created_time, created_by, updated_by, updated_time, process_instance_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_instance_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from process_instance_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.ProcessInstanceLog" >
+    insert into process_instance_log (id, version_id, task_id, process_node_id,
+      message, process_type, process_parameter, 
+      process_result, created_time, created_by, 
+      updated_by, updated_time, process_instance_id
+      )
+    values (#{id,jdbcType=BIGINT},#{versionId,jdbcType=BIGINT}, #{taskId,jdbcType=BIGINT}, #{processNodeId,jdbcType=BIGINT},
+      #{message,jdbcType=VARCHAR}, #{processType,jdbcType=VARCHAR}, #{processParameter,jdbcType=VARCHAR}, 
+      #{processResult,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{processInstanceId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.ProcessInstanceLog" >
+    insert into process_instance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionId != null" >
+        version_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="processNodeId != null" >
+        process_node_id,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="processType != null" >
+        process_type,
+      </if>
+      <if test="processParameter != null" >
+        process_parameter,
+      </if>
+      <if test="processResult != null" >
+        process_result,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="processNodeId != null" >
+        #{processNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="processType != null" >
+        #{processType,jdbcType=VARCHAR},
+      </if>
+      <if test="processParameter != null" >
+        #{processParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="processResult != null" >
+        #{processResult,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.ProcessInstanceLog" >
+    update process_instance_log
+    <set>
+      <if test="versionId != null" >
+        version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="processNodeId != null" >
+        process_node_id = #{processNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="processType != null" >
+        process_type = #{processType,jdbcType=VARCHAR},
+      </if>
+      <if test="processParameter != null" >
+        process_parameter = #{processParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="processResult != null" >
+        process_result = #{processResult,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.ProcessInstanceLog" >
+    update process_instance_log
+    set version_id = #{versionId,jdbcType=BIGINT},
+      task_id = #{taskId,jdbcType=BIGINT},
+      process_node_id = #{processNodeId,jdbcType=BIGINT},
+      message = #{message,jdbcType=VARCHAR},
+      process_type = #{processType,jdbcType=VARCHAR},
+      process_parameter = #{processParameter,jdbcType=VARCHAR},
+      process_result = #{processResult,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from process_instance_log
+    where task_id = #{taskId,jdbcType=BIGINT}
+    order by id
+  </select>
+</mapper>

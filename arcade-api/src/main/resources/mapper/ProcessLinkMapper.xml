@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.ProcessLinkMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.ProcessLink" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="version_id" property="versionId" jdbcType="BIGINT" />
+    <result column="process_instance_id" property="processInstanceId" jdbcType="BIGINT" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="source_node_id" property="sourceNodeId" jdbcType="BIGINT" />
+    <result column="target_node_id" property="targetNodeId" jdbcType="BIGINT" />
+    <result column="target_port_id" property="targetPortId" jdbcType="VARCHAR" />
+    <result column="source_port_id" property="sourcePortId" jdbcType="VARCHAR" />
+    <result column="line_condition" property="lineCondition" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version_id, process_instance_id, uuid, source_node_id, target_node_id, target_port_id,source_port_id,line_condition, is_delete,
+    created_by, created_time, updated_by, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_link
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from process_link
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.ProcessLink" >
+    insert into process_link (id, version_id, process_instance_id, uuid,source_node_id,
+      target_node_id, target_port_id,source_port_id,line_condition, is_delete,
+      created_by, created_time, updated_by, 
+      updated_time)
+    values (#{id,jdbcType=BIGINT}, #{versionId,jdbcType=BIGINT}, #{processInstanceId,jdbcType=BIGINT}, #{uuid,jdbcType=VARCHAR},#{sourceNodeId,jdbcType=BIGINT},
+      #{targetNodeId,jdbcType=BIGINT},#{targetPortId,jdbcType=VARCHAR},#{sourcePortId,jdbcType=VARCHAR}, #{lineCondition,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER},
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.ProcessLink" useGeneratedKeys="true" keyProperty="id">
+    insert into process_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionId != null" >
+        version_id,
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="sourceNodeId != null" >
+        source_node_id,
+      </if>
+      <if test="targetNodeId != null" >
+        target_node_id,
+      </if>
+      <if test="targetPortId != null" >
+        target_port_id,
+      </if>
+      <if test="sourcePortId != null" >
+        source_port_id,
+      </if>
+      <if test="lineCondition != null" >
+        line_condition,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="versionId != null" >
+          #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceNodeId != null" >
+        #{sourceNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetNodeId != null" >
+        #{targetNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetPortId != null" >
+        #{targetPortId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcePortId != null" >
+        #{sourcePortId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineCondition != null" >
+        #{lineCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.ProcessLink" >
+    update process_link
+    <set>
+      <if test="versionId != null" >
+          version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceNodeId != null" >
+        source_node_id = #{sourceNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetNodeId != null" >
+        target_node_id = #{targetNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetPortId != null" >
+        target_port_id = #{targetPortId,jdbcType=BIGINT},
+      </if>
+      <if test="sourcePortId != null" >
+        source_port_id = #{sourcePortId,jdbcType=BIGINT},
+      </if>
+      <if test="lineCondition != null" >
+        line_condition = #{lineCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.ProcessLink" >
+    update process_link
+    set version_id = #{versionId,jdbcType=BIGINT},
+      process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      source_node_id = #{sourceNodeId,jdbcType=BIGINT},
+      target_node_id = #{targetNodeId,jdbcType=BIGINT},
+      target_port_id = #{targetPortId,jdbcType=VARCHAR},
+      source_port_id = #{sourcePortId,jdbcType=VARCHAR},
+      line_condition = #{lineCondition,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessLink">
+    select
+    <include refid="Base_Column_List" />
+    from process_link
+    <where>
+        <if test="id != null" >
+            and id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="versionId != null" >
+            and version_id = #{versionId,jdbcType=BIGINT}
+        </if>
+        <if test="uuid != null" >
+            and uuid = #{uuid,jdbcType=VARCHAR}
+        </if>
+        <if test="processInstanceId != null" >
+            and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+        </if>
+        <if test="sourceNodeId != null" >
+            and source_node_id = #{sourceNodeId,jdbcType=BIGINT}
+        </if>
+        <if test="targetNodeId != null" >
+            and target_node_id = #{targetNodeId,jdbcType=BIGINT}
+        </if>
+        <if test="sourcePortId != null" >
+            and source_port_id = #{sourcePortId,jdbcType=VARCHAR}
+        </if>
+        <if test="targetPortId != null" >
+            and target_port_id = #{targetPortId,jdbcType=VARCHAR}
+        </if>
+        <if test="lineCondition != null" >
+            and line_condition = #{lineCondition,jdbcType=VARCHAR}
+        </if>
+        <if test="isDelete != null" >
+            and is_delete = #{isDelete,jdbcType=INTEGER}
+        </if>
+        <if test="createdBy != null" >
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="createdTime != null" >
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updatedBy != null" >
+            and updated_by = #{updatedBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null" >
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+    </where>
+  </select>
+  <select id="selectBySourceTargetNodeId" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessLink">
+    select
+    <include refid="Base_Column_List" />
+    from process_link
+    where (source_node_id = #{sourceNodeId,jdbcType=BIGINT} or target_node_id = #{targetNodeId,jdbcType=BIGINT})
+      and version_id = #{versionId,jdbcType=BIGINT}
+      and is_delete = 0
+      and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+  </select>
+  <select id="getIdByUuid" parameterType="com.x6.arcade.entity.ProcessLink" resultType="Long">
+    select id from process_link where uuid = #{uuid} and  process_instance_id= #{processInstanceId} and version_id = #{versionId}
+  </select>
+  <update id="deleteByProcessInstanceIdAndUuid" parameterType="com.x6.arcade.entity.ProcessLink">
+    update process_link
+    set is_delete = 1,
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_instance_id = #{processInstanceId,jdbcType=BIGINT} and uuid = #{uuid,jdbcType=VARCHAR} and version_id = #{versionId,jdbcType=BIGINT}
+  </update>
+  <update id="deleteBySourceTargetNodeId"  parameterType="com.x6.arcade.entity.ProcessLink">
+    update process_link
+    set is_delete = 1,
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+      and version_id = #{versionId,jdbcType=BIGINT}
+      and (source_node_id = #{sourceNodeId,jdbcType=BIGINT} or target_node_id = #{targetNodeId,jdbcType=BIGINT})
+  </update>
+  <update id="updateLinkTarget" parameterType="com.x6.arcade.entity.ProcessLink">
+    update process_link
+    set target_node_id = #{targetNodeId,jdbcType=BIGINT},
+        target_port_id = #{targetPortId,jdbcType=VARCHAR},
+        source_port_id = #{sourcePortId,jdbcType=VARCHAR},
+        is_delete = #{isDelete,jdbcType=INTEGER},
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+      and uuid = #{uuid,jdbcType=VARCHAR}
+      and version_id = #{versionId,jdbcType=BIGINT}
+  </update>
+  <select id="findTargetNodeId" resultType="java.lang.Long">
+    select target_node_id from process_link
+    where is_delete = 0
+      and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+      and source_node_id = #{sourceNodeId,jdbcType=BIGINT}
+      and version_id = #{versionId,jdbcType=BIGINT}
+  </select>
+  <select id="selectLineByVersionId" parameterType="java.lang.Long" resultType="com.x6.arcade.entity.ProcessLink">
+    select
+    <include refid="Base_Column_List" />
+    from process_link
+    where version_id = #{versionId,jdbcType=BIGINT} and is_delete = 0
+  </select>
+</mapper>

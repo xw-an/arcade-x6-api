@@ -1,0 +1,3 @@
+### 查询热门工具
+GET http://127.0.0.1:8001/arcade-x6-api/common/list
+Content-Type: application/json

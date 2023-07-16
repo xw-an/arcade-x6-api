@@ -1,0 +1,78 @@
+logging:
+  level:
+    com.x6.arcade: debug
+
+server:
+  port: 8001
+  servlet:
+    context-path: /arcade-x6-api
+
+spring:
+  application:
+    name: arcade-x6-api
+#  cloud:
+#    nacos:
+#      discovery:
+#        enabled: true # 如果不想使用 Nacos 进行服务注册和发现, 设置为 false 即可
+#        server-addr: 127.0.0.1:8848
+#        # server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850 # Nacos 服务器地址
+#        namespace: 2805ed35-4efe-4e63-aa47-76d090c3e4dc
+#        metadata:
+#          management:
+#            context-path: ${server.servlet.context-path}/actuator
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+    consumer:
+      auto-offset-reset: latest
+#  sleuth:
+#    sampler:
+#      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
+#  zipkin:
+#    sender:
+#      type: kafka # 默认是 http
+#    base-url: http://localhost:9411/
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    # password:
+    # 连接超时时间
+    timeout: 10000
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/arcade_x6?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: root123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+  devtools:
+    restart:
+      enabled: true
+
+mybatis:
+  # 匹配sql语句的映射文件的位置，classpat代表在resources下
+  mapper-locations: classpath:mapper/*.xml
+  # 以下两个配置可以省略，然后在mapper映射文件中配置也是可以的。
+  # 使用type-aliases-package中指定entity扫描包类让mybatis自定扫描到自定义的entity
+  type-aliases-package: com.x6.arcade.entity
+  configuration:
+    # 开启驼峰uName自动映射到u_name
+    map-underscore-to-camel-case: true
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+## 暴露端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always

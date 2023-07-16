@@ -1,0 +1,32 @@
+### 查询工具列表
+POST http://127.0.0.1:8001/arcade-x6-api/tools/list
+Content-Type: application/json
+
+{
+  "department": "MiddlewareTool",
+  "businessLine": "",
+  "keyword": "",
+  "pageSize": 10,
+  "currentPage": 1
+}
+
+### 查询工具详情
+GET http://127.0.0.1:8001/arcade-x6-api/tools/detail?toolId=1550
+Content-Type: application/json
+
+### 运行工具
+POST http://127.0.0.1:8001/arcade-x6-api/tools/run
+Content-Type: application/json
+
+{
+  "toolId":1784,
+  "requestParam":"{\"log\": {\"debugEnabled\": false,\"effectiveLevel\": {\"levelInt\": 20000,\"levelStr\": \"INFO\"},\"errorEnabled\": true,\"infoEnabled\": true,\"name\": \"cn.testTool.MiddlewareTool.CreatePackage\",\"traceEnabled\": false,\"warnEnabled\": true},\"businessLine\": \"业务线1\",\"discountType\": \"立减券\",\"amount\": \"11\",\"reachFen\": \"0\",\"packet_id\": \"\",\"purposeType\": \"不限\",\"user_id\": \"100100100\",\"sendCounts\": \"1\",\"env\": \"dev\"}",
+  "operator":"amy.xue"
+}
+
+### 查询工具执行日志
+GET http://127.0.0.1:8001/arcade-x6-api/tools/log?toolId=891
+Content-Type: application/json
+
+### 查询工具名列表
+GET http://127.0.0.1:8001/arcade-x6-api/tools/name?department=MiddlewareTool

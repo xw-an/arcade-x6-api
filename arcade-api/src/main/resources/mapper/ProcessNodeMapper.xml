@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.ProcessNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.ProcessNode" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="version_id" property="versionId" jdbcType="BIGINT" />
+    <result column="process_instance_id" property="processInstanceId" jdbcType="BIGINT" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="ports" property="ports" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version_id,process_instance_id, uuid,name, type, position,size, ports, is_delete, created_by, created_time,
+    updated_by, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from process_node
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from process_node
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.ProcessNode" >
+    insert into process_node (id, version_id,process_instance_id, uuid,name,
+      type, position, size, ports,is_delete,
+      created_by, created_time, updated_by, 
+      updated_time)
+    values (#{id,jdbcType=BIGINT}, #{versionId,jdbcType=BIGINT},#{processInstanceId,jdbcType=BIGINT},#{uuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR},#{ports,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER},
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.ProcessNode" useGeneratedKeys="true" keyProperty="id">
+    insert into process_node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionId != null" >
+        version_id,
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="ports != null" >
+        ports,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="ports != null" >
+        #{ports,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.ProcessNode" >
+    update process_node
+    <set>
+      <if test="versionId != null" >
+        version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="processInstanceId != null" >
+        process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="ports != null" >
+        ports = #{ports,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.ProcessNode" >
+    update process_node
+    set version_id = #{versionId,jdbcType=BIGINT},
+      process_instance_id = #{processInstanceId,jdbcType=BIGINT},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      ports = #{ports,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessNode">
+    select
+    <include refid="Base_Column_List" />
+    from process_node
+    <where>
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="versionId != null" >
+        and version_id = #{versionId,jdbcType=BIGINT}
+      </if>
+      <if test="processInstanceId != null" >
+        and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+      </if>
+      <if test="uuid != null" >
+        and uuid = #{uuid,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="position != null" >
+        and position = #{position,jdbcType=VARCHAR}
+      </if>
+      <if test="size!= null" >
+        and size = #{size,jdbcType=VARCHAR}
+      </if>
+      <if test="ports != null" >
+        and ports = #{ports,jdbcType=VARCHAR}
+      </if>
+      <if test="isDelete != null" >
+        and is_delete = #{isDelete,jdbcType=INTEGER}
+      </if>
+      <if test="createdBy != null" >
+        and created_by = #{createdBy,jdbcType=VARCHAR}
+      </if>
+      <if test="createdTime != null" >
+        and created_time = #{createdTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updatedBy != null" >
+        and updated_by = #{updatedBy,jdbcType=VARCHAR}
+      </if>
+      <if test="updatedTime != null" >
+        and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  <update id="deleteByProcessInstanceIdAndUuid" parameterType="com.x6.arcade.entity.ProcessNode">
+    update process_node
+    set is_delete = 1,
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    and version_id = #{versionId,jdbcType=BIGINT}
+    and uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <select id="getIdByUuid" parameterType="com.x6.arcade.entity.ProcessNode" resultType="Long">
+    select id from process_node
+    where uuid = #{uuid,jdbcType=VARCHAR}
+    and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    and version_id = #{versionId,jdbcType=BIGINT}
+  </select>
+  <select id="getProcessNodeByUuid" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.ProcessNode">
+    select
+    <include refid="Base_Column_List" />
+    from process_node
+    where uuid = #{uuid,jdbcType=VARCHAR}
+    and process_instance_id = #{processInstanceId,jdbcType=BIGINT}
+    and version_id = #{versionId,jdbcType=BIGINT}
+  </select>
+  <update id="updateByPosition" parameterType="com.x6.arcade.entity.ProcessNode">
+    update process_node
+    set position = #{position,jdbcType=VARCHAR},
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=BIGINT}
+  </update>
+  <update id="updateBySize" parameterType="com.x6.arcade.entity.ProcessNode">
+    update process_node
+    set size = #{size,jdbcType=VARCHAR},
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=BIGINT}
+  </update>
+  <select id="selectTypeNode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from process_node
+    where process_instance_id = #{processInstanceId,jdbcType=BIGINT} and type = #{type,jdbcType=VARCHAR} and is_delete = 0
+  </select>
+  <select id="selectByVersionId" parameterType="long" resultType="com.x6.arcade.entity.ProcessNode">
+    select
+    <include refid="Base_Column_List" />
+    from process_node
+    where version_id = #{versionId,jdbcType=BIGINT} and is_delete = 0
+  </select>
+</mapper>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.x6.arcade.dao.TestToolMapper" >
+  <resultMap id="BaseResultMap" type="com.x6.arcade.entity.TestTool" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="tool_name" property="toolName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="business_line" property="businessLine" jdbcType="VARCHAR" />
+    <result column="developer" property="developer" jdbcType="VARCHAR" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="tool_type" property="toolType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="usage_restrict" property="usageRestrict" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tool_name, description, department,business_line, developer, tags, create_time, update_time,
+    tool_type, status, usage_restrict
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_tool
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.x6.arcade.entity.TestTool">
+    select
+    <include refid="Base_Column_List" />
+    from test_tool
+    <where>
+      <if test="id != null" >
+       id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="toolName != null and toolName !=''" >
+        and tool_name like concat('%',#{toolName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="description != null and description !=''" >
+        and description like concat('%',#{description,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="department != null and department != ''" >
+        and department = #{department,jdbcType=VARCHAR}
+      </if>
+      <if test="businessLine != null and businessLine!=''" >
+        and business_line = #{businessLine,jdbcType=VARCHAR}
+      </if>
+      <if test="developer != null and developer!=''" >
+        and developer = #{developer,jdbcType=VARCHAR}
+      </if>
+      <if test="tags != null and tags!=''" >
+        and tags like concat('%',#{tags,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="toolType != null" >
+        and tool_type = #{toolType,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="usageRestrict != null" >
+        and usage_restrict = #{usageRestrict,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from test_tool
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.x6.arcade.entity.TestTool" >
+    insert into test_tool (id, tool_name, description, department,
+      business_line, developer, tags, 
+      create_time, update_time, tool_type, 
+      status, usage_restrict)
+    values (#{id,jdbcType=BIGINT}, #{toolName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+        #{department,jdbcType=VARCHAR},
+      #{businessLine,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{toolType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{usageRestrict,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.x6.arcade.entity.TestTool" useGeneratedKeys="true" keyProperty="id">
+    insert into test_tool
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="toolName != null" >
+        tool_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="department != null" >
+          department,
+      </if>
+      <if test="businessLine != null" >
+        business_line,
+      </if>
+      <if test="developer != null" >
+        developer,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="toolType != null" >
+        tool_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="usageRestrict != null" >
+        usage_restrict,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="toolName != null" >
+        #{toolName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+          #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        #{businessLine,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null" >
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toolType != null" >
+        #{toolType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="usageRestrict != null" >
+        #{usageRestrict,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.x6.arcade.entity.TestTool" >
+    update test_tool
+    <set >
+      <if test="toolName != null" >
+        tool_name = #{toolName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+          department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLine != null" >
+        business_line = #{businessLine,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null" >
+        developer = #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toolType != null" >
+        tool_type = #{toolType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="usageRestrict != null" >
+        usage_restrict = #{usageRestrict,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.x6.arcade.entity.TestTool" >
+    update test_tool
+    set tool_name = #{toolName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      business_line = #{businessLine,jdbcType=VARCHAR},
+      developer = #{developer,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tool_type = #{toolType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      usage_restrict = #{usageRestrict,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectToolsName" parameterType="String"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from test_tool
+    where department = #{department,jdbcType=VARCHAR} and status = 1
+  </select>
+  <delete id="deleteByDepartment">
+    delete from test_tool
+    where department = #{department,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectByDepartment" resultType="java.lang.Long">
+    select id from test_tool
+    where department = #{department,jdbcType=VARCHAR}
+  </select>
+</mapper>
