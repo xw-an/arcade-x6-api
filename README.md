@@ -17,7 +17,7 @@ arcade-mvc-config 模块是用于处理 HTTP 请求的拦截器配置。它定�
 ## 快速开始
 以下是快速开始项目的步骤：
 1. 本地创建一个mysql数据库：库名为：arcade_x6
-2. 执行项目的arcade-api模块下的resource目录中的sql文件夹下的所有建表语句
+2. 执行项目的arcade-api模块下的resource目录中的sql文件夹下的所有建表/插入测试数据的sql文件
 3. 克隆项目到本地：git clone https://github.com/xw-an/arcade-x6-api.git
 4. 进入项目目录：cd arcade-x6-api
 5. 构建项目：mvn clean install
